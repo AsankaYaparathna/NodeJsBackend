@@ -50,7 +50,6 @@ app.post('/getToken', async (req, res) => {
 app.post('/getData', async (req, res) => {
   try {
     const originURL = req.headers.referer;
-    console.log(req.body);
     if (originURL === process.env.OriginUrl1 || originURL === process.env.OriginUrl2) {
       var options = {
         method: 'GET',
