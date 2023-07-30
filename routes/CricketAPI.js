@@ -53,12 +53,11 @@ app.post('/getData', async (req, res) => {
     if (originURL === process.env.OriginUrl1 || originURL === process.env.OriginUrl2) {
       var options = {
         method: 'GET',
-        url: `${process.env.URL}/v5/cricket/${process.env.project_key}/${req.params.endpoint}/`,
+        url: req.query.key === "0" ? `${process.env.URL}/v5/cricket/${process.env.project_key}/${req.query.endpoint}/`: `${process.env.URL}/v5/cricket/${process.env.project_key}/${req.query.endpoint}/${req.query.key}/${req.query.keyEndPoint}/`,
         headers: {
-          'rs-token': req.body.token
+          'rs-token': req.query.tk
         }
       }
-      console.log(options);
       request(options, function (error, response) {
         if (error) throw new Error(error)
         var data = JSON.parse(response.body);
@@ -77,6 +76,7 @@ app.post('/getData', async (req, res) => {
     res.status(500).json(response);
   }
 });
+
 
 app.get('/featured-matches-2', async (req, res) => {
   try {
@@ -158,7 +158,6 @@ app.get('/match-over-summary', async (req, res) => {
           'rs-token': tokenNew
         }
       }
-
       request(optionsGetData, function (error, response) {
         if (error) throw new Error(error)
         var data = JSON.parse(response.body);
