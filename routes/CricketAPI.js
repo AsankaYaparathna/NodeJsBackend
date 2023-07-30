@@ -15,6 +15,7 @@ var request = require('request')
 app.post('/getToken', async (req, res) => {
   try {
     const originURL = req.headers.referer;
+    console.log(originURL);
     if (originURL === process.env.OriginUrl1 || originURL === process.env.OriginUrl2) {
       var options = {
         method: 'POST',
