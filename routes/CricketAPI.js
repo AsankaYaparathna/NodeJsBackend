@@ -60,7 +60,6 @@ app.post('/getData', async (req, res) => {
           'rs-token': req.query.tk
         }
       }
-      console.log(options);
       request(options, function (error, response) {
         if (error) throw new Error(error)
         var data = JSON.parse(response.body);
