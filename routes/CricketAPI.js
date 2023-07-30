@@ -55,7 +55,11 @@ app.post('/getData', async (req, res) => {
     if (originURL === process.env.OriginUrl1 || originURL === process.env.OriginUrl2) {
       var options = {
         method: 'GET',
-        url: req.query.key === "0" ? `${process.env.URL}/v5/cricket/${process.env.project_key}/${req.query.endpoint}/`: req.query.keyEndPoint !=="0" ? `${process.env.URL}/v5/cricket/${process.env.project_key}/${req.query.endpoint}/${req.query.key}/${req.query.keyEndPoint}/` : `${process.env.URL}/v5/cricket/${process.env.project_key}/${req.query.endpoint}/${req.query.key}/`,
+        url: req.query.key === "0" ? 
+        `${process.env.URL}/v5/cricket/${process.env.project_key}/${req.query.endpoint}/`: 
+        req.query.keyEndPoint ==="0" ? `${process.env.URL}/v5/cricket/${process.env.project_key}/${req.query.endpoint}/${req.query.key}/` :
+        `${process.env.URL}/v5/cricket/${process.env.project_key}/${req.query.endpoint}/${req.query.key}/${req.query.keyEndPoint}/` 
+        ,
         headers: {
           'rs-token': req.query.tk
         }
