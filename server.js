@@ -14,5 +14,5 @@ const crickApi = require('./routes/CricketAPI');
 app.use("/cricket", crickApi);
 
 app.listen(process.env.PORT, () => {
-    console.log(`Node API app is running on port ${process.env.PORT}`)
+    console.log(`Node Server is running on port : ${process.env.PORT}`)
 });

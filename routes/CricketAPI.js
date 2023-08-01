@@ -15,8 +15,8 @@ var request = require('request')
 app.post('/getToken', async (req, res) => {
   try {
     const originURL = req.headers.referer;
-    console.log( "Requesting Url : "+ originURL);
     if (originURL === process.env.OriginUrl1 || originURL === process.env.OriginUrl2) {
+    console.log(`Requesting Url : ${originURL} is accepted.`);
       var options = {
         method: 'POST',
         url: `${process.env.URL}/v5/core/${process.env.project_key}/auth/`,
@@ -51,8 +51,8 @@ app.post('/getToken', async (req, res) => {
 app.post('/getData', async (req, res) => {
   try {
     const originURL = req.headers.referer;
-    console.log( "Requesting Url : "+ originURL);
     if (originURL === process.env.OriginUrl1 || originURL === process.env.OriginUrl2) {
+    console.log(`Requesting Url : ${originURL} is accepted.`);
       var options = {
         method: 'GET',
         url: req.query.key === "0" ? 
