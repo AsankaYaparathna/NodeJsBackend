@@ -14,9 +14,9 @@ var request = require('request')
 // get Token
 app.post('/getToken', async (req, res) => {
   try {
-    const originURL = req.headers.referer;
-    if (originURL === process.env.OriginUrl1 || originURL === process.env.OriginUrl2) {
-    console.log(`Requesting Url : ${originURL} is accepted.`);
+    //const originURL = req.headers.referer;
+    if (URLValidation(req.headers.referer)) {
+    console.log(`Requesting Url : ${req.headers.referer} is accepted. [Token]`);
       var options = {
         method: 'POST',
         url: `${process.env.URL}/v5/core/${process.env.project_key}/auth/`,
@@ -50,9 +50,9 @@ app.post('/getToken', async (req, res) => {
 // get Data
 app.post('/getData', async (req, res) => {
   try {
-    const originURL = req.headers.referer;
-    if (originURL === process.env.OriginUrl1 || originURL === process.env.OriginUrl2) {
-    console.log(`Requesting Url : ${originURL} is accepted.`);
+    //const originURL = req.headers.referer;
+    if (URLValidation(req.headers.referer)) {
+    console.log(`Requesting Url : ${req.headers.referer} is accepted.  [${req.query.endpoint}]`);
       var options = {
         method: 'GET',
         url: req.query.key === "0" ? 
@@ -83,5 +83,13 @@ app.post('/getData', async (req, res) => {
   }
 });
 
+function URLValidation(originURL){
+  if (originURL === process.env.OriginUrl1 || originURL === process.env.OriginUrl2 || originURL === process.env.OriginUrl3){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 
 module.exports = app;
